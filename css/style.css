@@ -1,0 +1,24 @@
+.header,.footer{
+  width: 100%;
+  background: navy;
+  color:whitesmoke;
+  border: 1px solid #000;
+  box-sizing: border-box;
+  text-align:center;
+}
+
+main{
+  font-size: 24px;
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+#can_box{
+  text-align: center;
+}
+#clear_btn,#label{
+background-color: gray;
+}

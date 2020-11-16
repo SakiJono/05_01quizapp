@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>quizアプリ02</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/sanitize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1>クイズアプリ02（複数）</h1>
+  </header>
+  <main>
+    <p id="count">第1問</p>
+    <p id="question"></p>
+    <form action="">
+      <label for="choice00">
+        <input type="radio" name="choices" id="choice00" value="0">
+        <span id="choice00_label">効率</span>
+      </label>
+      <label for="choice01">
+        <input type="radio" name="choices" id="choice01" value="1">
+        <span id="choice01_label">経済力</span>
+      </label>
+      <label for="choice02">
+        <input type="radio" name="choices" id="choice02" value="2">
+        <span id="choice02_label">時間</span>
+      </label>
+    </form>
+  </main>
+  <footer class="footer">
+    <h1 id="result">結果は？</h1>
+  </footer>
+  <div id="can_box">
+    <canvas id="canvas" width="600" height="450"></canvas>
+  </div>
+  <button id="clear_btn">クリアー</button>
+  <label for="color" id="label">
+    色
+    <input type="color" id="color">
+  </label>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="js/mousedrawing.js"></script>
+
+  <script>
+    $(function () {
+
+      //問題の定義
+      const questions = [
+        'コードを書く時に最も重要な要素は？？',
+        '課題を作る時に大事なことは？？',
+        'コードを書くのがしんどくなったときはどうする？？',
+        '今回写経になった理由は？？',
+        '当初の予定は何をしたかった？？',
+        '言い残すことは'
+      ];
+      //選択肢の定義
+      const choices = [
+        ['効率', '経済力', '時間'],
+        ['面白いアイデア', 'かける時間', '洗練されたコード'],
+        ['さらにコードを書く', '寝る', '飲み会に行く'],
+        ['思いつかなかったから', '実現出来ないコードをずっと試していたから', 'めんどくさくなったから'],
+        ['100マス計算', '年賀状作成', '画像の色を変える'],
+        ['明日から頑張る', '英語にがて', 'ごめんなさい']
+      ];
+      //正解の定義
+      const answer = [2, 1, 0, 1, 2, 2];
+      //カウント用変数
+      let count = 0;
+      let correct = 0;
+
+      //最初の問題の選択肢を表示
+      $('#question').text(questions[count]);
+      $('#choice00_label').text(choices[count][0]);
+      $('#choice01_label').text(choices[count][1]);
+      $('#choice02_label').text(choices[count][2]);
+
+      //クリック時に正誤判断＆次の問題の内容を表示
+      $('input[name="choices"]').on('click', function () {
+        if ($(this).val() == answer[count]) {
+          //正解の時の処理
+          // alert('OK');
+          $('#result').text('OK!!');
+          //正解数をカウント
+          correct++;
+        } else {
+          //誤答時の処理
+          // alert('NG');
+          $('#result').text('NG!!');
+        }
+
+        count++;
+        if (count < questions.length) {
+          //次の問題を表示
+          $('#count').text('第' + (Number(count) + 1) + '問');
+          $('#question').text(questions[count]);
+          $('#choice00_label').text(choices[count][0]);
+          $('#choice01_label').text(choices[count][1]);
+          $('#choice02_label').text(choices[count][2]);
+        } else {
+          //全部終わったら修了で正解数を表示
+          // alert('終了！')
+          // alert(correct + '問正解')
+          $('#result').text('終了！' + correct + '問正解');
+        }
+      })
+
+    })
+
+
+  </script>
+
+</body>
+
+</html>
