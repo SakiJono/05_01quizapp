@@ -48,8 +48,22 @@ $("#clear_btn").on("click", function () {
 
 
 var val = document.getElementById("color").value;
+$('#color').change(function () {
 
-console.log(val);
+  console.log($('#color').val());
+  color = $('#color').val()
+
+});
+
+// var R = document.getElementById("#range").valueAsNumber;
+// $('#range').change(function () {
+
+//   console.log($(R).val());
+//   bold_line = $(R).val()
+
+// });
+
+
 
 
 
